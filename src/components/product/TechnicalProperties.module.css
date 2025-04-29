@@ -1,0 +1,48 @@
+.container {
+  margin: 2rem 0;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.propertiesList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.propertyRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.propertyKey {
+  color: #666;
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  padding-right: 0.5rem;
+  min-width: 200px;
+}
+
+.dotLine {
+  flex: 1;
+  border-bottom: 1px dotted #ccc;
+  margin: 0 0.5rem;
+  height: 1px;
+  min-width: 20px;
+}
+
+.propertyValue {
+  color: #333;
+  font-weight: 500;
+  text-align: right;
+  padding-left: 0.5rem;
+}
