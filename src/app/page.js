@@ -5,7 +5,9 @@ import Stroke from "@/components/Stroke/Stroke";
 import Stats from "@/components/Stats/Stats";
 import Advantages from "@/components/Advantages/Advantages";
 import Contacts from "@/components/Contacts/Contacts";
+import PaymentDelivery from "@/components/PaymentDelivery/PaymentDelivery";
 import Footer from "@/components/Footer/Footer";
+
 export default function Home() {
   return (
     <div>
@@ -16,6 +18,7 @@ export default function Home() {
       </div>
 
       <Advantages />
+      <PaymentDelivery />
       <Contacts />
       <Footer />
     </div>
