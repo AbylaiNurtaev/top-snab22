@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,7 +9,7 @@ import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import { useCart } from "@/context/CartContext";
 
-export default function CatalogPage() {
+function CatalogContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [products, setProducts] = useState([]);
@@ -119,15 +119,19 @@ export default function CatalogPage() {
           }
         });
         
-        // Добавляем перенос строки после каждого блока
-        htmlContent += text + '<br/>';
+        // Добавляем параграф для каждого блока
+        htmlContent += `<p>${text}</p>`;
       });
       
       return htmlContent;
     } catch (e) {
-      // Если не JSON, возвращаем как есть
-      return description;
+      // Если не JSON, обрабатываем как обычный текст с переносами строк
+      return description.split('\n').map(line => `<p>${line}</p>`).join('');
     }
+  };
+
+  const handleAddToCart = (product) => {
+    addToCart(product, 1);
   };
 
   if (loading) {
@@ -239,5 +243,21 @@ export default function CatalogPage() {
       </div>
       <Footer />
     </>
+  );
+}
+
+export default function CatalogPage() {
+  return (
+    <Suspense fallback={
+      <>
+        <Header />
+        <div className={styles.loading}>
+          <div className={styles.loadingSpinner} />
+        </div>
+        <Footer />
+      </>
+    }>
+      <CatalogContent />
+    </Suspense>
   );
 } 

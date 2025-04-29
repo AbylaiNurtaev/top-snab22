@@ -4,10 +4,15 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { EditorState, convertToRaw } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
+import dynamic from 'next/dynamic';
 import { TechnicalPropertiesEditor } from '@/components/admin/TechnicalPropertiesEditor';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import styles from '../../../admin/admin.module.css';
+
+const Editor = dynamic(
+  () => import('react-draft-wysiwyg').then(mod => mod.Editor),
+  { ssr: false }
+);
 
 const NewProductPage = () => {
   const router = useRouter();
