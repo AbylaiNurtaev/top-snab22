@@ -4,6 +4,7 @@ import Header from "@/components/Header/Header";
 import Stroke from "@/components/Stroke/Stroke";
 import Stats from "@/components/Stats/Stats";
 import Advantages from "@/components/Advantages/Advantages";
+import Promotions from "@/components/Promotions/Promotions";
 import Contacts from "@/components/Contacts/Contacts";
 import PaymentDelivery from "@/components/PaymentDelivery/PaymentDelivery";
 import Footer from "@/components/Footer/Footer";
@@ -18,6 +19,7 @@ export default function Home() {
       </div>
 
       <Advantages />
+      <Promotions />
       <PaymentDelivery />
       <Contacts />
       <Footer />

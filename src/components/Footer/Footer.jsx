@@ -11,11 +11,13 @@ const Footer = () => {
       <div className={styles.container}>
         <div className={styles.column}>
           <p className={styles.subtle}>Связаться с нами</p>
-          <h2 className={styles.title}>Интересует надёжная поставка?</h2>
+          {/* <h2 className={styles.title}>Интересует надёжная поставка?</h2> */}
           <p className={styles.description}>
-            Мы будем рады обсудить возможности сотрудничества и предложить
-            решения, полностью соответствующие вашим техническим задачам и
-            срокам.
+            Вся представленная на сайте информация, касающаяся технических
+            характеристик, наличия на складе, стоимости товаров, цены и сроков
+            доставки носит информационный характер и ни при каких условиях не
+            является публичной офертой, определяемой положениями гражданского
+            кодекса РФ
           </p>
           <p className={styles.copyright}>
             Top-Snab - поставщик инженерной сантехники
@@ -45,6 +47,18 @@ const Footer = () => {
             ул. Новорощинская д. 4, оф. 403-1
           </p>
           <img src="/images/logo.svg" alt="Логотип" className={styles.logo} />
+        </div>
+      </div>
+
+      <div className={styles.legalContainer}>
+        <div className={styles.legalInfo}>
+          <p className={styles.legalText}>
+            ООО «ИНЖЕНЕРНЫЕ РЕШЕНИЯ» пр. Народного Ополчения, д. 211, Лит. А,
+            помещ. 2Н, офис 2, г. Санкт-Петербург
+          </p>
+          <p className={styles.legalText}>
+            ОГРН: 1217800002771 ИНН: 7807262617 КПП: 780701001
+          </p>
         </div>
       </div>
     </footer>
