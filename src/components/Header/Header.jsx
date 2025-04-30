@@ -5,9 +5,24 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useCart } from "@/context/CartContext";
+import {
+  FaBars,
+  FaTimes,
+  FaShoppingCart,
+  FaUser,
+  FaEnvelope,
+  FaPhone,
+} from "react-icons/fa";
+import styles from "./Header.module.css";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isBuilderFormOpen, setIsBuilderFormOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+  });
   const { totalItems, toggleCart } = useCart();
 
   // Блокировка скролла при открытом меню
@@ -25,6 +40,24 @@ export default function Header() {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleBuilderClick = () => {
+    setIsBuilderFormOpen(true);
+  };
+
+  const handleFormChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+    setIsBuilderFormOpen(false);
   };
 
   return (
@@ -71,7 +104,9 @@ export default function Header() {
               <a href="tel:+79214165320">+7 (921) 416-53-20</a>
               <a href="mailto:ma.warmmrus@gmail.com">ma.warmmrus@gmail.com</a>
             </div>
-            <button className="header__btn">Я строитель</button>
+            <button className="header__btn" onClick={handleBuilderClick}>
+              Я строитель
+            </button>
             <div className="header__cart-container">
               <Link
                 href="/cart"
@@ -98,7 +133,9 @@ export default function Header() {
             <a href="tel:+79214165320">+7 (921) 416-53-20</a>
             <a href="mailto:ma.warmmrus@gmail.com">ma.warmmrus@gmail.com</a>
           </div>
-          <button className="header__btn">Я строитель</button>
+          <button className="header__btn" onClick={handleBuilderClick}>
+            Я строитель
+          </button>
           <div className="header__cart-container">
             <Link href="/cart" className="header__cart-link">
               <Image
@@ -141,6 +178,77 @@ export default function Header() {
           <span></span>
         </button>
       </div>
+
+      {isBuilderFormOpen && (
+        <div
+          className={styles.modalOverlay}
+          onClick={() => setIsBuilderFormOpen(false)}
+        >
+          <div
+            className={styles.modalContent}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className={styles.closeButton}
+              onClick={() => setIsBuilderFormOpen(false)}
+            >
+              &times;
+            </button>
+
+            <div className={styles.formHeader}>
+              <h2 className={styles.formTitle}>Форма для строителей</h2>
+              <p className={styles.formSubtitle}>
+                Заполните форму, и мы свяжемся с вами в ближайшее время
+              </p>
+            </div>
+
+            <form onSubmit={handleFormSubmit} className={styles.form}>
+              <div className={styles.inputGroup}>
+                <FaUser className={styles.inputIcon} />
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Ваше имя"
+                  value={formData.name}
+                  onChange={handleFormChange}
+                  className={styles.input}
+                  required
+                />
+              </div>
+
+              <div className={styles.inputGroup}>
+                <FaEnvelope className={styles.inputIcon} />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Ваш email"
+                  value={formData.email}
+                  onChange={handleFormChange}
+                  className={styles.input}
+                  required
+                />
+              </div>
+
+              <div className={styles.inputGroup}>
+                <FaPhone className={styles.inputIcon} />
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="Ваш телефон"
+                  value={formData.phone}
+                  onChange={handleFormChange}
+                  className={styles.input}
+                  required
+                />
+              </div>
+
+              <button type="submit" className={styles.submitButton}>
+                Отправить заявку
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

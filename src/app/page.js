@@ -6,6 +6,7 @@ import Stats from "@/components/Stats/Stats";
 import Advantages from "@/components/Advantages/Advantages";
 import Promotions from "@/components/Promotions/Promotions";
 import Reviews from "@/components/Reviews/Reviews";
+import About from "@/components/About/About";
 import Contacts from "@/components/Contacts/Contacts";
 import PaymentDelivery from "@/components/PaymentDelivery/PaymentDelivery";
 import Footer from "@/components/Footer/Footer";
@@ -22,6 +23,7 @@ export default function Home() {
       <Advantages />
       <Promotions />
       <Reviews />
+      <About />
       <PaymentDelivery />
       <Contacts />
       <Footer />
